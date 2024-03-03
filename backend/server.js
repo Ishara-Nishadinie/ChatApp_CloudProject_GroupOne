@@ -24,6 +24,11 @@ app.get('/', (req, res)=> {
 
 databaseConnect();
 
+app.use(express.static("../frontend/build"));
+app.get("*", (req,res) =>{
+    res.sendFile(path.resolve(__dirname,"frontend", "build", "index.html"))
+});
+
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
 })
